@@ -17,12 +17,14 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -37,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -78,7 +81,11 @@ fun HomeScreen(gamesViewModel: GamesViewModel, navController: NavController) {
                     CharacterHeader(char = initial, Modifier.fillParentMaxWidth())
                 }
                 items(games) { game ->
-                    GameCard(game = game, navController = navController)
+                    GameCard(
+                        game = game,
+                        navController = navController,
+                        gamesViewModel = gamesViewModel
+                    )
                 }
             }
         }
@@ -103,14 +110,16 @@ fun HomeScreen(gamesViewModel: GamesViewModel, navController: NavController) {
 }
 
 @Composable
-fun GameCard(game: Game, navController: NavController) {
+fun GameCard(game: Game, navController: NavController, gamesViewModel: GamesViewModel) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 7.dp),
         shape = RoundedCornerShape(7.dp),
         modifier = Modifier
             .fillMaxSize()
+            .clickable {
+                navController.navigate(Screens.Details.route + "/${game.id}")
+            }
     ) {
-
         Row {
             Image(
                 painter = rememberImagePainter(game.thumbnail),
@@ -122,11 +131,27 @@ fun GameCard(game: Game, navController: NavController) {
             )
             Column(
                 modifier = Modifier
+                    .weight(1f)
                     .padding(10.dp)
                     .align(Alignment.CenterVertically)
             ) {
                 Text(text = game.title, fontWeight = FontWeight.Bold)
                 Text(text = game.shortDescription, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            }
+            IconButton(
+                onClick = {
+                    gamesViewModel.deleteGameById(game.id)
+                },
+                modifier = Modifier
+                    .weight(.3f)
+                    .padding(8.dp)
+                    .background(Color.Red, shape = CircleShape)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete",
+                    tint = Color.White
+                )
             }
         }
     }
