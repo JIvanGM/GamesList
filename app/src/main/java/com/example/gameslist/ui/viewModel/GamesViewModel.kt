@@ -38,7 +38,7 @@ class GamesViewModel @Inject constructor(
         }
     }
 
-    private fun getAllDBGames() {
+    fun getAllDBGames() {
         viewModelScope.launch {
             _games.value = localGameRepository.getAllGames()
         }
@@ -55,6 +55,12 @@ class GamesViewModel @Inject constructor(
         viewModelScope.launch {
             localGameRepository.deleteGameById(id)
             getAllDBGames()
+        }
+    }
+
+    fun searchGame(query: String) {
+        viewModelScope.launch {
+            _games.value = localGameRepository.searchGame(query)
         }
     }
 }

@@ -7,4 +7,5 @@ interface LocalGameRepositoryInterface {
     suspend fun getAllGames(): List<Game?>
     suspend fun getGameById(gameId: Int): Game?
     suspend fun deleteGameById(gameId: Int)
+    suspend fun searchGame(query: String): List<Game?>
 }

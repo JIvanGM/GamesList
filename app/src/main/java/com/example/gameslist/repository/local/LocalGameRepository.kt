@@ -24,4 +24,7 @@ class LocalGameRepository @Inject constructor(
         gamesDao.deleteGameById(gameId)
     }
 
+    override suspend fun searchGame(query: String): List<Game> {
+        return gamesDao.searchGame(query).sortedBy { it.title }
+    }
 }

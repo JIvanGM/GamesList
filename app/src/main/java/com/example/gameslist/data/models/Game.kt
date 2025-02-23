@@ -12,4 +12,5 @@ data class Game(
     val thumbnail: String,
     @SerializedName("short_description")
     val shortDescription: String,
+    val genre: String,
 )
