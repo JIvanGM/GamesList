@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("dagger.hilt.android.plugin")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -39,6 +40,9 @@ android {
     buildFeatures {
         compose = true
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -66,5 +70,9 @@ dependencies {
     implementation(libs.viewmodel.ktx)
     implementation(libs.viewmodel.compose)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
     ksp(libs.hilt.android.compiler)
 }
