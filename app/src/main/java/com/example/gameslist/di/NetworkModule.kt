@@ -1,6 +1,6 @@
 package com.example.gameslist.di
 
-import com.example.gameslist.data.ApiService
+import com.example.gameslist.data.datasource.remote.ApiService
 import com.example.gameslist.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object NetworkModule {
 
     @Singleton
     @Provides

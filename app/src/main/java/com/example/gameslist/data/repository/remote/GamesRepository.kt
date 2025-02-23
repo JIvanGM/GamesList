@@ -1,6 +1,6 @@
-package com.example.gameslist.repository
+package com.example.gameslist.data.repository.remote
 
-import com.example.gameslist.data.GamesService
+import com.example.gameslist.data.datasource.remote.GamesService
 import com.example.gameslist.data.models.Game
 import javax.inject.Inject
 

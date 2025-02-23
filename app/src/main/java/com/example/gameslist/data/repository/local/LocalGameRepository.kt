@@ -1,4 +1,4 @@
-package com.example.gameslist.repository.local
+package com.example.gameslist.data.repository.local
 
 import com.example.gameslist.data.datasource.local.GamesDao
 import com.example.gameslist.data.models.Game

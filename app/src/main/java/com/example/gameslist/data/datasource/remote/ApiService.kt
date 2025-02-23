@@ -1,4 +1,4 @@
-package com.example.gameslist.data
+package com.example.gameslist.data.datasource.remote
 
 import com.example.gameslist.data.models.Game
 import com.example.gameslist.util.Constants.Companion.GAMES_LIST

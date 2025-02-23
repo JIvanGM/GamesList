@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gameslist.data.models.Game
 import com.example.gameslist.domain.GetGames
-import com.example.gameslist.repository.local.LocalGameRepository
+import com.example.gameslist.data.repository.local.LocalGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

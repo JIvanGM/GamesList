@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.gameslist.data.datasource.local.GamesDao
 import com.example.gameslist.data.datasource.local.GamesDatabase
-import com.example.gameslist.repository.local.LocalGameRepository
+import com.example.gameslist.data.repository.local.LocalGameRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
