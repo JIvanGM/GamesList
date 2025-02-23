@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetGames @Inject constructor(private val gamesRepository: GamesRepository) {
     suspend operator fun invoke(): List<Game> {
-        return gamesRepository.getGames().sortedBy { it.title }
+        return gamesRepository.getGames()
     }
 }

@@ -30,8 +30,10 @@ class GamesViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val games = getGamesD()
-                _games.value = games
-            } catch (_: Exception) {
+                localGameRepository.insertAllGames(games)
+                _games.value = localGameRepository.getAllGames()
+            } catch (exception: Exception) {
+                exception.toString()
             }
         }
     }
